@@ -1,0 +1,36 @@
+{
+  "name": "flightcommentadmin",
+  "version": "1.0.0",
+  "description": "A case study for an administration of comments regarding flights",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node index.js",
+    "start:watch": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/errorhandler": "^1.5.0",
+    "@types/mongoose": "^5.7.32",
+    "cors": "latest",
+    "errorhandler": "latest",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25",
+    "typescript": "^3.6.4"
+  },
+  "author": "Sergi Garreta",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.51"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.js"
+    ],
+    "watch": [
+      "**/*.ts"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  }
+}
