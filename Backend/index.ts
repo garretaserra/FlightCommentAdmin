@@ -3,6 +3,7 @@ import express = require('express');
 import bodyParser = require('body-parser');
 import cors = require('cors');
 import errorHandler = require('errorhandler');
+import mongoose = require('mongoose');
 
 //Import routes
 let testRouter = require('./routes/test');
@@ -24,5 +25,18 @@ app.listen(port);
 // Give basic info through console
 console.log('Server listening on port ' + port);
 console.log('Test server at: http://localhost:' + port + '/test/get');
+
+//Mongo database connection
+let dbHost: string = 'localhost';
+let dbPort: number = 27017;
+let dbName: string = 'FlightCommentAdmin'
+mongoose.connect('mongodb://' + dbHost + ':' + dbPort + '/' + dbName,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() =>{
+  console.log('Connection to the database successful');
+}).catch(err =>{
+  console.log(`Database error: ${err.message}`);
+});
 
 module.exports = app;
