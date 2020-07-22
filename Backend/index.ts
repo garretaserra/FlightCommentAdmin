@@ -7,6 +7,7 @@ import mongoose = require('mongoose');
 
 //Import routes
 let testRouter = require('./routes/test');
+let commentRouter = require('./routes/comment');
 
 //Server variable initialization
 let app = express();
@@ -17,6 +18,7 @@ app.use(errorHandler());
 
 //Add routes to express app
 app.use('/test', testRouter);
+app.use('/comment', commentRouter);
 
 //Make app listen on port 8080
 let port: number = 8080;
