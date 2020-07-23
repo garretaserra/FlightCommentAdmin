@@ -1,4 +1,5 @@
 import CommentSchema from '../models/Comment';
+import {query} from "express";
 
 exports.createComment = async function(req: any, res: any){
   let body = req.body;
@@ -45,20 +46,31 @@ exports.createComment = async function(req: any, res: any){
     return ;
   }
 
-  commentObject.save().then((error: any, document: any) =>{
-    if(error){
-      res.status(500).send('An internal error has happened');
-      console.log(error);
-    }
-    else{
-      // Return json document as it now contains the ID and Date
-      res.status(200).json(document);
-    }
+  commentObject.save().then((document: any) =>{
+    // Return json document as it now contains the ID and Date
+    res.status(200).json(document);
   })
 };
 
 exports.getComments = async function(req: any, res: any) {
-  // TODO: Add filters
-  let comments = await CommentSchema.find();
+  let DBQuery: any = {};
+
+  if(req.query.flightID){
+    DBQuery['FlightId'] = req.query.flightID;
+  }
+
+  let transaction = CommentSchema.find(DBQuery);
+
+  if(req.query.sort && req.query.order){
+    let order: string = req.query.order ? '' : '-';
+    transaction.sort(order + req.query.sort);
+  }
+
+  let comments = await transaction;
   res.status(200).json(comments);
+}
+
+exports.getUniqueFlightID = async function(req: any, res: any) {
+  let distinctFlightIDs = await CommentSchema.distinct('FlightId');
+  res.status(200).json(distinctFlightIDs)
 }

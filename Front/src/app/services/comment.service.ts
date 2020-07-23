@@ -19,4 +19,8 @@ export class CommentService {
   addComment(data){
     return this.http.post(this.url + 'newComment', data);
   }
+
+  getDistinctFlightIds(){
+    return this.http.get(this.url + 'distinctFlightId');
+  }
 }

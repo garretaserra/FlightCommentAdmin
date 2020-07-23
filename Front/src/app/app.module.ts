@@ -10,6 +10,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
 import { HomeComponent } from './home/home.component';
 import {MatSortModule} from "@angular/material/sort";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {MatSortModule} from "@angular/material/sort";
     MatToolbarModule,
     MatCardModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

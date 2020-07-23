@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Sort} from '@angular/material/sort';
+import {CommentService} from "../services/comment.service";
 
 export interface Dessert {
   calories: number;
@@ -24,10 +25,18 @@ export class HomeComponent implements OnInit {
     {name: 'Gingerbread', calories: 356, fat: 16, carbs: 49, protein: 4},
   ];
 
+  distinctFlightIDs: [string];
   sortedData: Dessert[];
 
-  constructor() {
+  constructor(
+    public commentService: CommentService
+  ) {
     this.sortedData = this.desserts.slice();
+
+    // Get all distinct FlightIDs
+    commentService.getDistinctFlightIds().toPromise().then((result: [string])=>{
+      this.distinctFlightIDs = result;
+    });
   }
 
   ngOnInit(): void {
