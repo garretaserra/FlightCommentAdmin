@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Sort} from '@angular/material/sort';
 import {CommentService} from "../services/comment.service";
+import {Comment} from "../models/Comment";
 
 export interface Dessert {
   calories: number;
@@ -26,7 +27,9 @@ export class HomeComponent implements OnInit {
   ];
 
   distinctFlightIDs: [string];
+  shownComments: [Comment];
   sortedData: Dessert[];
+  selectedFlightID: string = '';
 
   constructor(
     public commentService: CommentService
@@ -34,15 +37,20 @@ export class HomeComponent implements OnInit {
     this.sortedData = this.desserts.slice();
 
     // Get all distinct FlightIDs
-    commentService.getDistinctFlightIds().toPromise().then((result: [string])=>{
+    commentService.getDistinctFlightIds().toPromise().then((result: [string]) => {
       this.distinctFlightIDs = result;
     });
+
+    commentService.getComments().toPromise().then((result: any) => {
+      this.shownComments = result;
+    })
   }
 
   ngOnInit(): void {
   }
 
   sortData(sort: Sort) {
+    console.log(sort);
     const data = this.desserts.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
@@ -60,6 +68,17 @@ export class HomeComponent implements OnInit {
         default: return 0;
       }
     });
+  }
+
+  async selectedFlight(flightID: string) {
+    this.selectedFlightID = flightID;
+    await this.updateCommentsShown();
+  }
+
+  async updateCommentsShown(){
+    this.commentService.getComments(this.selectedFlightID).toPromise().then((result: [Comment])=>{
+      this.shownComments = result;
+    })
   }
 }
 

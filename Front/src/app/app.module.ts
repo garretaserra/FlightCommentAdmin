@@ -11,6 +11,7 @@ import {MatTableModule} from "@angular/material/table";
 import { HomeComponent } from './home/home.component';
 import {MatSortModule} from "@angular/material/sort";
 import {HttpClientModule} from "@angular/common/http";
+import {MatRippleModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatCardModule,
     MatTableModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

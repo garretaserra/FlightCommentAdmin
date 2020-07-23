@@ -55,8 +55,8 @@ exports.createComment = async function(req: any, res: any){
 exports.getComments = async function(req: any, res: any) {
   let DBQuery: any = {};
 
-  if(req.query.flightID){
-    DBQuery['FlightId'] = req.query.flightID;
+  if(req.query.FlightId){
+    DBQuery['FlightId'] = req.query.FlightId;
   }
 
   let transaction = CommentSchema.find(DBQuery);

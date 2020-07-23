@@ -4,12 +4,12 @@
 <div>
   <div class="left-panel">
     <mat-card>
-      <mat-selection-list>
-        <div *ngFor="let flightID of distinctFlightIDs">
-          <mat-list-option>{{flightID}}</mat-list-option>
+      <mat-list>
+        <div mat-ripple *ngFor="let flightID of distinctFlightIDs">
+          <button mat-list-item (click)="selectedFlight(flightID)">{{flightID}}</button>
           <mat-divider></mat-divider>
         </div>
-      </mat-selection-list>
+      </mat-list>
     </mat-card>
   </div>
 
@@ -17,19 +17,19 @@
     <mat-card>
       <table matSort (matSortChange)="sortData($event)">
         <tr>
-          <th mat-sort-header="name">Dessert (100g)</th>
-          <th mat-sort-header="calories">Calories</th>
-          <th mat-sort-header="fat">Fat (g)</th>
-          <th mat-sort-header="carbs">Carbs (g)</th>
-          <th mat-sort-header="protein">Protein (g)</th>
+          <th mat-sort-header="_id">ID</th>
+          <th mat-sort-header="UserId">User</th>
+          <th mat-sort-header="comment">Comment</th>
+          <th mat-sort-header="date">Date</th>
+          <th mat-sort-header="Tags">Tags</th>
         </tr>
 
-        <tr *ngFor="let dessert of sortedData">
-          <td>{{dessert.name}}</td>
-          <td>{{dessert.calories}}</td>
-          <td>{{dessert.fat}}</td>
-          <td>{{dessert.carbs}}</td>
-          <td>{{dessert.protein}}</td>
+        <tr *ngFor="let comment of shownComments">
+          <td>{{comment._id}}</td>
+          <td>{{comment.UserId}}</td>
+          <td>{{comment.comment}}</td>
+          <td>{{comment.date}}</td>
+          <td>{{comment.Tags}}</td>
         </tr>
       </table>
     </mat-card>

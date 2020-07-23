@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,18 @@ export class CommentService {
     private http: HttpClient
   ) { }
 
-  getComments(){
-    return this.http.get(this.url + 'getComments');
+  getComments(filter?: string, sortColumn?: string, sortOrder?: string){
+    let httpParams: any = {};
+    if(filter){
+      httpParams['FlightId'] = filter;
+    }
+    if(sortColumn){
+      httpParams['sort'] = sortColumn;
+    }
+    if(sortOrder){
+      httpParams['order'] = sortOrder;
+    }
+    return this.http.get(this.url + 'getComments', {params: httpParams});
   }
 
   addComment(data){
