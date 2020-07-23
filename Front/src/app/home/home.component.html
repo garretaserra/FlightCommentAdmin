@@ -1,0 +1,43 @@
+<mat-toolbar style="background-color: lightblue">
+  <span>Flight Comment Admin</span>
+</mat-toolbar>
+<div>
+  <div class="left-panel">
+    <mat-card>
+      <mat-selection-list>
+        <mat-list-option>123</mat-list-option>
+        <mat-divider></mat-divider>
+        <mat-list-option>123</mat-list-option>
+        <mat-divider></mat-divider>
+        <mat-list-option>123</mat-list-option>
+        <mat-list-option>123</mat-list-option>
+        <mat-divider></mat-divider>
+        <mat-list-option>123</mat-list-option>
+        <mat-divider></mat-divider>
+        <mat-list-option>123</mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+  </div>
+
+  <div class="data-table-container">
+    <mat-card>
+      <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <th mat-sort-header="name">Dessert (100g)</th>
+          <th mat-sort-header="calories">Calories</th>
+          <th mat-sort-header="fat">Fat (g)</th>
+          <th mat-sort-header="carbs">Carbs (g)</th>
+          <th mat-sort-header="protein">Protein (g)</th>
+        </tr>
+
+        <tr *ngFor="let dessert of sortedData">
+          <td>{{dessert.name}}</td>
+          <td>{{dessert.calories}}</td>
+          <td>{{dessert.fat}}</td>
+          <td>{{dessert.carbs}}</td>
+          <td>{{dessert.protein}}</td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
+</div>

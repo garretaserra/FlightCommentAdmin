@@ -8,20 +8,24 @@ import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
+import { HomeComponent } from './home/home.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatListModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatTableModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
