@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "645c650a-65ed-4d3d-9f67-4c25473ca20b",
+		"name": "FlightCommentAdmin",
+		"description": "A collection for accessing the endpoints of the FlightCommentAdmin platform.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/test/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/test/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"get"
+					]
+				},
+				"description": "Test that the server is up and running."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comment/getComments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/comment/getComments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comment",
+						"getComments"
+					]
+				},
+				"description": "Retrieve comments from the database-"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comment/newComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"This is a comment\",\r\n    \"UserId\": \"1234567890\",\r\n    \"FlightId\": \"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/comment/newComment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comment",
+						"newComment"
+					]
+				},
+				"description": "Add a new comment to the database."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
