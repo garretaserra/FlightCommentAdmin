@@ -62,7 +62,7 @@ exports.getComments = async function(req: any, res: any) {
   let transaction = CommentSchema.find(DBQuery);
 
   if(req.query.sort && req.query.order){
-    let order: string = req.query.order ? '' : '-';
+    let order: string = req.query.order === "asc" ? '' : '-';
     transaction.sort(order + req.query.sort);
   }
 
