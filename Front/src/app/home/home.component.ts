@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Sort} from '@angular/material/sort';
 import {CommentService} from "../services/comment.service";
 import {Comment} from "../models/Comment";
+import {Router} from "@angular/router";
 
 export interface Dessert {
   calories: number;
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
   selectedFlightID: string = '';
 
   constructor(
-    public commentService: CommentService
+    public commentService: CommentService,
+    private router: Router
   ) {
     // Get all distinct FlightIDs
     commentService.getDistinctFlightIds().toPromise().then((result: [string]) => {
@@ -55,5 +57,9 @@ export class HomeComponent implements OnInit {
     this.commentService.getComments(this.selectedFlightID).toPromise().then((result: [Comment])=>{
       this.shownComments = result;
     })
+  }
+
+  newComment() {
+    this.router.navigateByUrl('/newComponent');
   }
 }

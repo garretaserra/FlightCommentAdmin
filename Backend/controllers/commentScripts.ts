@@ -30,7 +30,7 @@ exports.createComment = async function(req: any, res: any){
     FlightId = body.FlightId;
   }
   else {
-    res.status(4000).send('Missing FlightId');
+    res.status(400).send('Missing FlightId');
     return ;
   }
 

@@ -12,11 +12,18 @@ import { HomeComponent } from './home/home.component';
 import {MatSortModule} from "@angular/material/sort";
 import {HttpClientModule} from "@angular/common/http";
 import {MatRippleModule} from "@angular/material/core";
+import {MatButtonModule} from "@angular/material/button";
+import { NewCommentComponent } from './new-comment/new-comment.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NewCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,12 @@ import {MatRippleModule} from "@angular/material/core";
     MatTableModule,
     MatSortModule,
     HttpClientModule,
-    MatRippleModule
+    MatRippleModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
