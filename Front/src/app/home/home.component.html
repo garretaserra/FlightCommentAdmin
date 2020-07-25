@@ -6,6 +6,7 @@
   <div class="left-panel">
     <mat-card>
       <mat-list>
+        <button mat-list-item (click)="selectedFlight(null)">Show All</button>
         <div mat-ripple *ngFor="let flightID of distinctFlightIDs">
           <button mat-list-item (click)="selectedFlight(flightID)">{{flightID}}</button>
           <mat-divider></mat-divider>
