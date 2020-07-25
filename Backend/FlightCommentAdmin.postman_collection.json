@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "645c650a-65ed-4d3d-9f67-4c25473ca20b",
+		"_postman_id": "999771b6-9bf8-4166-9ad8-2313ae4decf5",
 		"name": "FlightCommentAdmin",
 		"description": "A collection for accessing the endpoints of the FlightCommentAdmin platform.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -75,6 +75,27 @@
 					]
 				},
 				"description": "Add a new comment to the database."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comment/distinctFlightId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/comment/distinctFlightId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comment",
+						"distinctFlightId"
+					]
+				},
+				"description": "Get all the FLightIDs without repeats."
 			},
 			"response": []
 		}
