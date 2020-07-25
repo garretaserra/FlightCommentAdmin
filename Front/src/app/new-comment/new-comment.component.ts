@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {CommentService} from "../services/comment.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-new-comment',
@@ -17,7 +18,8 @@ export class NewCommentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,9 @@ export class NewCommentComponent implements OnInit {
         Tags: this.tags
       }
     ).toPromise().then(result =>{
-      console.log(result);
+      if(result){
+        this.snackBar.open('Comment Created', '', {duration: 2000});
+      }
     } );
   }
 }
