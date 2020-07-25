@@ -30,7 +30,11 @@
           <td>{{comment.UserId}}</td>
           <td>{{comment.comment}}</td>
           <td>{{comment.date}}</td>
-          <td>{{comment.Tags}}</td>
+          <td>
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of comment.Tags">{{tag}}</mat-chip>
+            </mat-chip-list>
+          </td>
         </tr>
       </table>
     </mat-card>
