@@ -2,7 +2,7 @@
   <span>Flight Comment Admin</span>
   <button mat-raised-button style="margin-left: auto" (click)="newComment()">Create Comment</button>
 </mat-toolbar>
-<div class="main-container">
+<div class="main-container" *ngIf="shownComments.length > 0">
   <div class="left-panel">
     <mat-card class="mat-elevation-z8">
       <mat-list>
@@ -60,4 +60,10 @@
                    [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
+</div>
+<div class="main-container">
+  <mat-card class="message">
+    No Comments yet.
+    Create your first comment by clicking on the top right button.
+  </mat-card>
 </div>

@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   distinctFlightIDs: [string];
   displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
-  shownComments: [Comment];
+  // @ts-ignore
+  shownComments: [Comment] = [];
   selectedFlightID: string = '';
   activeSort: string = '';
   directionSort: string = '';
