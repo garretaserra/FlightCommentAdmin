@@ -2,6 +2,7 @@ import {expect} from 'chai';
 import {Done} from 'mocha';
 import chai = require('chai');
 import chaiHttp = require('chai-http');
+
 chai.use(chaiHttp);
 
 describe('Server Test', function () {

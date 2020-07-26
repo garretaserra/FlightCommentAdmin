@@ -1,4 +1,5 @@
 import express = require('express');
+
 let router: express.Router = express.Router();
 
 let commentScripts = require('../controllers/commentScripts');

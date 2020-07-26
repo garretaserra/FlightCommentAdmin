@@ -1,16 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Sort} from '@angular/material/sort';
 import {CommentService} from "../services/comment.service";
 import {Comment} from "../models/Comment";
 import {Router} from "@angular/router";
-
-export interface Dessert {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
 
 @Component({
   selector: 'app-home',

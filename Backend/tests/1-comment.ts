@@ -1,9 +1,10 @@
 import {expect} from 'chai';
 import {Done} from 'mocha';
+import CommentSchema from "../models/Comment";
 import chai = require('chai');
 import chaiHttp = require('chai-http');
-import CommentSchema from "../models/Comment";
 import mongoose = require('mongoose');
+
 chai.use(chaiHttp);
 
 //Mongo database connection

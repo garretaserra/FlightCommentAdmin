@@ -1,5 +1,4 @@
 import CommentSchema from '../models/Comment';
-import {query} from "express";
 
 exports.createComment = async function(req: any, res: any){
   let body = req.body;
