@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node index.js",
     "start:watch": "nodemon",
-    "test": "tsc && mocha 'tests/**/*.js'"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "dependencies": {
     "@types/cors": "^2.8.6",
@@ -25,7 +25,9 @@
     "@types/mocha": "^8.0.0",
     "@types/node": "^12.12.51",
     "chai": "^4.2.0",
-    "chai-http": "^4.3.0"
+    "chai-http": "^4.3.0",
+    "mocha": "^8.0.1",
+    "ts-node": "^8.10.2"
   },
   "nodemonConfig": {
     "ignore": [
