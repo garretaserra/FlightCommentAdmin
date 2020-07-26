@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   distinctFlightIDs: [string];
   shownComments: [Comment];
   selectedFlightID: string = '';
+  displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
 
   constructor(
     public commentService: CommentService,
