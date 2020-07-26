@@ -61,7 +61,7 @@
     </mat-paginator>
   </div>
 </div>
-<div class="main-container">
+<div class="main-container" *ngIf="getCommentsLength() <= 0">
   <mat-card class="message">
     No Comments yet.
     Create your first comment by clicking on the top right button.

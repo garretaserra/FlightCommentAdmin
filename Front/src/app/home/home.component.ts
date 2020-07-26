@@ -68,4 +68,8 @@ export class HomeComponent implements OnInit {
     this.limit = event.pageSize;
     this.updateCommentsShown();
   }
+
+  getCommentsLength(){
+    return this.shownComments.length;
+  }
 }
