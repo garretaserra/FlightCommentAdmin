@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Sort} from '@angular/material/sort';
-import {CommentService} from "../services/comment.service";
-import {Comment} from "../models/Comment";
-import {Router} from "@angular/router";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {CommentService} from '../services/comment.service';
+import {Comment} from '../models/Comment';
+import {Router} from '@angular/router';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +16,11 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
   // @ts-ignore
   shownComments: [Comment] = [];
-  selectedFlightID: string = '';
-  activeSort: string = '';
-  directionSort: string = '';
-  limit: number = 10;
-  skip: number = 0;
+  selectedFlightID = '';
+  activeSort = '';
+  directionSort = '';
+  limit = 10;
+  skip = 0;
   @ViewChild('paginator') paginator: MatPaginator;
 
 
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     // Populate table with all comments
     commentService.getComments().toPromise().then((result: any) => {
       this.shownComments = result;
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -54,11 +54,11 @@ export class HomeComponent implements OnInit {
     await this.updateCommentsShown();
   }
 
-  async updateCommentsShown(){
-    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort).toPromise().then((result: [Comment])=>{
+  async updateCommentsShown() {
+    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort).toPromise().then((result: [Comment]) => {
       this.paginator.firstPage();
       this.shownComments = result;
-    })
+    });
   }
 
   newComment() {
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
     this.limit = event.pageSize;
   }
 
-  getCommentsLength(){
+  getCommentsLength() {
     return this.shownComments.length;
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {CommentService} from "../services/comment.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from '@angular/router';
+import {CommentService} from '../services/comment.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -12,8 +12,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class NewCommentComponent implements OnInit {
 
   tags: string[] = [];
-  newTag: string = '';
-  tagFromControl: FormControl = new FormControl('',[
+  newTag = '';
+  tagFromControl: FormControl = new FormControl('', [
     Validators.required
   ]);
   form: FormGroup;
@@ -27,10 +27,10 @@ export class NewCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      FlightId: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
-      UserId: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      FlightId: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      UserId: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
       comment: [null, [Validators.required]],
-    })
+    });
   }
 
   goToHome() {
@@ -57,21 +57,21 @@ export class NewCommentComponent implements OnInit {
         UserId: this.form.get('UserId').value,
         Tags: this.tags
       }
-    ).toPromise().then(result =>{
-      if(result){
-        let snackbar = this.snackBar.open('Comment Created', 'Go to Home', {duration: 2000});
-        snackbar.onAction().subscribe(()=>{
+    ).toPromise().then(result => {
+      if (result) {
+        const snackbar = this.snackBar.open('Comment Created', 'Go to Home', {duration: 2000});
+        snackbar.onAction().subscribe(() => {
           this.goToHome();
-        })
+        });
       }
-    } ).catch((error)=>{
-      if(error.error === 'Duplicate comment'){
+    } ).catch((error) => {
+      if (error.error === 'Duplicate comment') {
         this.snackBar.open('Comment already exists', '', {duration: 2000});
       }
     });
   }
 
-  generalValidations(fieldName: string){
-    return this.form.get(fieldName).invalid && this.form.get(fieldName).dirty && this.form.get(fieldName).touched
+  generalValidations(fieldName: string) {
+    return this.form.get(fieldName).invalid && this.form.get(fieldName).dirty && this.form.get(fieldName).touched;
   }
 }
