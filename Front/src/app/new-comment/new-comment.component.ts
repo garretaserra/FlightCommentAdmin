@@ -59,7 +59,10 @@ export class NewCommentComponent implements OnInit {
       }
     ).toPromise().then(result =>{
       if(result){
-        this.snackBar.open('Comment Created', '', {duration: 2000});
+        let snackbar = this.snackBar.open('Comment Created', 'Go to Home', {duration: 2000});
+        snackbar.onAction().subscribe(()=>{
+          this.goToHome();
+        })
       }
     } );
   }
