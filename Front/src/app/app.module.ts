@@ -17,7 +17,7 @@ import {NewCommentComponent} from './new-comment/new-comment.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -46,7 +46,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     FormsModule,
     MatChipsModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
