@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Sort} from '@angular/material/sort';
 import {CommentService} from "../services/comment.service";
 import {Comment} from "../models/Comment";
 import {Router} from "@angular/router";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-home',
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   directionSort: string = '';
   limit: number = 10;
   skip: number = 0;
+  @ViewChild('paginator') paginator: MatPaginator;
 
 
   constructor(
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
 
   async updateCommentsShown(){
     this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort).toPromise().then((result: [Comment])=>{
+      this.paginator.firstPage();
       this.shownComments = result;
     })
   }
@@ -66,7 +68,6 @@ export class HomeComponent implements OnInit {
   pageEvent(event: PageEvent) {
     this.skip = event.pageIndex * event.pageSize;
     this.limit = event.pageSize;
-    this.updateCommentsShown();
   }
 
   getCommentsLength(){
