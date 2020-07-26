@@ -19,6 +19,9 @@ To test if the server is running http get the endpoint:
 `curl http://localhost:8080/test/get`
 http://localhost:8080/test/get
 
+To run the tests (server should be started beforehand):
+`npm run test`
+
 Information regarding the endpoints of the server can be found on FlightCommentAdmin.postman_collection.json
 
 ##FrontEnd
