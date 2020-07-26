@@ -64,7 +64,11 @@ export class NewCommentComponent implements OnInit {
           this.goToHome();
         })
       }
-    } );
+    } ).catch((error)=>{
+      if(error.error === 'Duplicate comment'){
+        this.snackBar.open('Comment already exists', '', {duration: 2000});
+      }
+    });
   }
 
   generalValidations(fieldName: string){

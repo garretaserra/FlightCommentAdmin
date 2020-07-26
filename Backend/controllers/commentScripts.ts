@@ -50,6 +50,12 @@ exports.createComment = async function(req: any, res: any){
       // Return json document as it now contains the ID and Date
       res.status(200).json(document);
     })
+      .catch((error: any)=>{
+        // Catch duplicate key error to detect duplicates
+        if(error.code === 11000){
+          res.status(400).send('Duplicate comment');
+        }
+      })
   }
   catch (e) {
     console.log('Error: ' + e);
