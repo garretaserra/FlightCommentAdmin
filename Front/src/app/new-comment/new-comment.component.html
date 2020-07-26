@@ -29,7 +29,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Comment</mat-label>
-      <textarea matInput formControlName="comment"></textarea>
+      <textarea matInput rows="3" formControlName="comment"></textarea>
       <mat-error *ngIf="form.get('comment').errors?.required && generalValidations('comment')">
         Comment is <strong>required</strong>
       </mat-error>
@@ -41,7 +41,7 @@
           <mat-icon>delete</mat-icon>
         </button>
       </mat-list-item>
-      <mat-form-field>
+      <mat-form-field style="width: 70%">
         <mat-label>Tags</mat-label>
         <input matInput type="text" [formControl]="tagFromControl">
         <mat-error *ngIf="tagFromControl.hasError('required')">

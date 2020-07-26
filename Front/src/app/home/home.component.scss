@@ -21,3 +21,16 @@
 .message {
   margin-top: 5%;
 }
+
+.mat-row {
+  height: auto;
+}
+
+$cellPadding: 0 5px 0 5px;
+
+.mat-cell {
+  padding: $cellPadding;
+}
+.mat-header-cell{
+  padding: $cellPadding;
+}
