@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   async updateCommentsShown(){
-    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort, this.limit, this.skip).toPromise().then((result: [Comment])=>{
+    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort).toPromise().then((result: [Comment])=>{
       this.shownComments = result;
     })
   }

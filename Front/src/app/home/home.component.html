@@ -16,7 +16,7 @@
   </div>
 
   <div *ngIf="shownComments" class="data-table-container; mat-elevation-z8">
-    <table mat-table [dataSource]="shownComments" matSort (matSortChange)="sortData($event)">
+    <table mat-table [dataSource]="shownComments.slice(skip, skip + limit)" matSort (matSortChange)="sortData($event)">
 
       <!-- Comment ID Column -->
       <ng-container matColumnDef="_id">
@@ -56,7 +56,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator (page)="pageEvent($event)" [length]="shownComments.length"
-                   [pageSize]="10"
+                   [pageSize]="limit"
                    [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
