@@ -72,11 +72,11 @@ exports.getComments = async function(req: any, res: any) {
   }
 
   if(req.query.skip){
-    transaction.skip(req.query.skip);
+    transaction.skip(parseInt(req.query.skip));
   }
 
   if(req.query.limit){
-    transaction.limit(req.query.limit)
+    transaction.limit(parseInt(req.query.limit))
   }
 
   try{
