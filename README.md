@@ -24,7 +24,7 @@ To run the tests (server should be started beforehand):
 
 Information regarding the endpoints of the server can be found on FlightCommentAdmin.postman_collection.json
 
-##FrontEnd
+## FrontEnd
 
 Installing dependencies with npm:
 `npm install`
