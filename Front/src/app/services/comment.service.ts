@@ -12,7 +12,8 @@ export class CommentService {
     private http: HttpClient
   ) { }
 
-  getComments(filter?: string, sortColumn?: string, sortOrder?: string){
+  getComments(filter?: string, sortColumn?: string, sortOrder?: string, limit?: number, skip?: number){
+    // Add all params if they are passed
     let httpParams: any = {};
     if(filter){
       httpParams['FlightId'] = filter;
@@ -23,6 +24,13 @@ export class CommentService {
     if(sortOrder){
       httpParams['order'] = sortOrder;
     }
+    if(limit){
+      httpParams['limit'] = limit;
+    }
+    if(skip){
+      httpParams['skip'] = skip;
+    }
+
     return this.http.get(this.url + 'getComments', {params: httpParams});
   }
 

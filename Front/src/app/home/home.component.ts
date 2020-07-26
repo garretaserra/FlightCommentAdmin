@@ -3,6 +3,7 @@ import {Sort} from '@angular/material/sort';
 import {CommentService} from "../services/comment.service";
 import {Comment} from "../models/Comment";
 import {Router} from "@angular/router";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,14 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
 
   distinctFlightIDs: [string];
+  displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
   shownComments: [Comment];
   selectedFlightID: string = '';
-  displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
+  activeSort: string = '';
+  directionSort: string = '';
+  limit: number = 10;
+  skip: number = 0;
+
 
   constructor(
     public commentService: CommentService,
@@ -35,10 +41,10 @@ export class HomeComponent implements OnInit {
   }
 
   sortData(sort: Sort) {
+    this.activeSort = sort.active;
+    this.directionSort = sort.direction;
     // Get comments with the selected sorting
-    this.commentService.getComments(this.selectedFlightID, sort.active, sort.direction).toPromise().then((result: [Comment]) =>{
-      this.shownComments = result;
-    })
+    this.updateCommentsShown();
   }
 
   async selectedFlight(flightID: string) {
@@ -47,12 +53,18 @@ export class HomeComponent implements OnInit {
   }
 
   async updateCommentsShown(){
-    this.commentService.getComments(this.selectedFlightID).toPromise().then((result: [Comment])=>{
+    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort, this.limit, this.skip).toPromise().then((result: [Comment])=>{
       this.shownComments = result;
     })
   }
 
   newComment() {
     this.router.navigateByUrl('/newComponent');
+  }
+
+  pageEvent(event: PageEvent) {
+    this.skip = event.pageIndex * event.pageSize;
+    this.limit = event.pageSize;
+    this.updateCommentsShown();
   }
 }

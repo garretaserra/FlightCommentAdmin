@@ -65,6 +65,14 @@ exports.getComments = async function(req: any, res: any) {
     transaction.sort(order + req.query.sort);
   }
 
+  if(req.query.skip){
+    transaction.skip(req.query.skip);
+  }
+
+  if(req.query.limit){
+    transaction.limit(req.query.limit)
+  }
+
   let comments = await transaction;
   res.status(200).json(comments);
 }
