@@ -9,6 +9,9 @@ export const CommentSchema: Schema = new Schema<any>({
   Tags:       {type: [String]}
 })
 
+// Create index to prevent from inserting duplicate comments
+CommentSchema.index({comment: 1, UserId: 1, FlightId: 1}, {unique: true})
+
 export default mongoose.model('Comment', CommentSchema);
 
 function checkDates(date: Date) {

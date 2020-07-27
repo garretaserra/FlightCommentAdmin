@@ -2,7 +2,7 @@
   <span>Flight Comment Admin</span>
   <button mat-raised-button style="margin-left: auto" (click)="newComment()">Create Comment</button>
 </mat-toolbar>
-<div class="main-container">
+<div class="main-container" *ngIf="shownComments.length > 0">
   <div class="left-panel">
     <mat-card class="mat-elevation-z8">
       <mat-list>
@@ -15,8 +15,8 @@
     </mat-card>
   </div>
 
-  <div class="data-table-container">
-    <table *ngIf="shownComments" mat-table [dataSource]="shownComments" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+  <div *ngIf="shownComments" class="data-table-container mat-elevation-z8">
+    <table mat-table [dataSource]="shownComments.slice(skip, skip + limit)" matSort (matSortChange)="sortData($event)">
 
       <!-- Comment ID Column -->
       <ng-container matColumnDef="_id">
@@ -55,5 +55,18 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator
+      #paginator
+      (page)="pageEvent($event)"
+      [length]="shownComments.length"
+      [pageSize]="limit"
+      [pageSizeOptions]="[5, 10, 25, 50]">
+    </mat-paginator>
   </div>
+</div>
+<div class="main-container" *ngIf="getCommentsLength() <= 0">
+  <mat-card class="message">
+    No Comments yet.
+    Create your first comment by clicking on the top right button.
+  </mat-card>
 </div>

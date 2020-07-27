@@ -45,10 +45,22 @@ exports.createComment = async function(req: any, res: any){
     return ;
   }
 
-  commentObject.save().then((document: any) =>{
-    // Return json document as it now contains the ID and Date
-    res.status(200).json(document);
-  })
+  try{
+    commentObject.save().then((document: any) =>{
+      // Return json document as it now contains the ID and Date
+      res.status(200).json(document);
+    })
+      .catch((error: any)=>{
+        // Catch duplicate key error to detect duplicates
+        if(error.code === 11000){
+          res.status(400).send('Duplicate comment');
+        }
+      })
+  }
+  catch (e) {
+    console.log('Error: ' + e);
+    res.status(500).send('Something went wrong');
+  }
 };
 
 exports.getComments = async function(req: any, res: any) {
@@ -65,11 +77,23 @@ exports.getComments = async function(req: any, res: any) {
     transaction.sort(order + req.query.sort);
   }
 
-  let comments = await transaction;
-  res.status(200).json(comments);
+  try{
+    let comments = await transaction;
+    res.status(200).json(comments);
+  }
+  catch (e) {
+    console.log('Error: ' + e);
+    res.status(500).send('Something went wrong');
+  }
 }
 
 exports.getUniqueFlightID = async function(req: any, res: any) {
+  try{
   let distinctFlightIDs = await CommentSchema.distinct('FlightId');
   res.status(200).json(distinctFlightIDs)
+  }
+  catch (e) {
+    console.log('Error: ' + e);
+    res.status(500).send('Something went wrong');
+  }
 }

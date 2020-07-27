@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Sort} from '@angular/material/sort';
-import {CommentService} from "../services/comment.service";
-import {Comment} from "../models/Comment";
-import {Router} from "@angular/router";
+import {CommentService} from '../services/comment.service';
+import {Comment} from '../models/Comment';
+import {Router} from '@angular/router';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,16 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
 
   distinctFlightIDs: [string];
-  shownComments: [Comment];
-  selectedFlightID: string = '';
   displayedColumns: string[] = ['_id', 'UserId', 'comment', 'date', 'Tags'];
+  // @ts-ignore
+  shownComments: [Comment] = [];
+  selectedFlightID = '';
+  activeSort = '';
+  directionSort = '';
+  limit = 10;
+  skip = 0;
+  @ViewChild('paginator') paginator: MatPaginator;
+
 
   constructor(
     public commentService: CommentService,
@@ -28,17 +36,17 @@ export class HomeComponent implements OnInit {
     // Populate table with all comments
     commentService.getComments().toPromise().then((result: any) => {
       this.shownComments = result;
-    })
+    });
   }
 
   ngOnInit(): void {
   }
 
   sortData(sort: Sort) {
+    this.activeSort = sort.active;
+    this.directionSort = sort.direction;
     // Get comments with the selected sorting
-    this.commentService.getComments(this.selectedFlightID, sort.active, sort.direction).toPromise().then((result: [Comment]) =>{
-      this.shownComments = result;
-    })
+    this.updateCommentsShown();
   }
 
   async selectedFlight(flightID: string) {
@@ -46,13 +54,23 @@ export class HomeComponent implements OnInit {
     await this.updateCommentsShown();
   }
 
-  async updateCommentsShown(){
-    this.commentService.getComments(this.selectedFlightID).toPromise().then((result: [Comment])=>{
+  async updateCommentsShown() {
+    this.commentService.getComments(this.selectedFlightID, this.activeSort, this.directionSort).toPromise().then((result: [Comment]) => {
+      this.paginator.firstPage();
       this.shownComments = result;
-    })
+    });
   }
 
   newComment() {
     this.router.navigateByUrl('/newComponent');
+  }
+
+  pageEvent(event: PageEvent) {
+    this.skip = event.pageIndex * event.pageSize;
+    this.limit = event.pageSize;
+  }
+
+  getCommentsLength() {
+    return this.shownComments.length;
   }
 }
