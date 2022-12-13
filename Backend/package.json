@@ -14,7 +14,7 @@
     "@types/mongoose": "^5.7.32",
     "cors": "latest",
     "errorhandler": "latest",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.9.25",
     "typescript": "^3.6.4"
   },
